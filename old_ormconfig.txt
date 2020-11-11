@@ -1,0 +1,32 @@
+var dotenv = require("dotenv")
+dotenv.config()
+
+const dbPort = parseInt(process.env.DB_PORT) || 5432;
+const host = process.env.DB_HOST;
+const dbname = process.env.DB_NAME;
+const dbuser = process.env.DB_USER;
+const dbpassword = process.env.DB_PASSWORD;
+console.log('host', host)
+console.log('dbname', dbname)
+console.log('dbuser', dbuser)
+console.log('dbpassword', dbpassword)
+module.exports = {
+    "type": "postgres",
+    "host": host,
+    "port": dbPort,
+    "username": dbuser,
+    "password": dbpassword,
+    "database": dbname,
+    "synchronize": true,
+    "logging": true,
+    "entities": ["dist/**/*.entity{.ts,.js}"],
+    "migrationsTableName": "custom_migration_table",
+    "migrations": [
+        "dist/migrations/*{.ts,.js}",
+        "src/migrations/*{.ts,.js}"
+    ],
+    "cli": {
+      "migrationsDir": "src/migrations"
+    },
+    "migrationsRun": false
+};
