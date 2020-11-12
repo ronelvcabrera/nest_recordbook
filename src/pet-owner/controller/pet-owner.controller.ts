@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Query } from '@nestjs/common';
 import { PetOwner } from '../models/pet-owner.interface';
 import { PetOwnerService } from '../service/pet-owner.service';
 import { Observable } from 'rxjs';
@@ -14,6 +14,10 @@ export class PetOwnerController {
         @Query('state')state: string,
         @Query('pet_experience')pet_experience: string
     ): Observable<PetOwner[]> {
-        return this.petOwnerService.findAll({ first_name, email, state, pet_experience });
+        try {
+            return this.petOwnerService.findAll({ first_name, email, state, pet_experience });
+        } catch(e) {
+            throw new HttpException('Error Occured', HttpStatus.INTERNAL_SERVER_ERROR)
+        }
     }
 }
