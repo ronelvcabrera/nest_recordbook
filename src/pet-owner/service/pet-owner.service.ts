@@ -12,8 +12,17 @@ export class PetOwnerService {
         @InjectRepository(PetOwnerEntity) private readonly petOwnerRepository: Repository<PetOwnerEntity>
     ) {}
     findAll(params: Object): Observable<PetOwner[]> {
+      for (var key in params) {
+        if (params.hasOwnProperty(key)) {
+          if (!params[key]) {
+            delete params[key]
+          }
+        }
+      }
       return from(
-        this.petOwnerRepository.find()
+        this.petOwnerRepository.find({
+          where: params
+        })
       ).pipe(
         map((petOwner: PetOwner[]) => {
           return petOwner
