@@ -34,11 +34,11 @@ $ npm run test:cov
 ```
 
 ## Application flow
-> At initial Start as Nestjs does, it creates table.
-> To jump start the application, the data given at `src/data/data.json` will be imported to the database.
-> Separated `controller`, `models` and `services` for better distinction and encapsulation.
-> `controller` will handle the routing
-> `services` will handle business logic
-> `models` will handle interaces and Entities for TypeOrm
-> API available is `pet-owner` with GET method.
-> filters can be added under query parameters on the request. 
+1. At initial Start as Nestjs does, it creates table.
+2. To jump start the application, the data given at `src/data/data.json` will be imported to the database.
+3. Separated `controller`, `models` and `services` for better distinction and encapsulation.
+4. `controller` will handle the routing
+5. `services` will handle business logic
+6. `models` will handle interaces and Entities for TypeOrm
+7. API available is `pet-owner` with GET method.
+8. filters can be added under query parameters on the request. 
